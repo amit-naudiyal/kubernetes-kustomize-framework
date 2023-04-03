@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: working-sample-deployment
+spec:
+  template:
+    spec:
+      containers:
+        - name: my-app
+          resources:
+            limits:
+              cpu: "75m"
+              memory: "150Mi"
+          volumeMounts:
+          - mountPath: /db-config
+            name: db-vol
+      volumes:
+      - name: db-vol
+        configMap:
+          name: db-map

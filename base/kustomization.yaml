@@ -1,0 +1,8 @@
+resources:
+  - service.yaml
+  - deployment.yaml
+
+configMapGenerator:
+- name: sample-config-map
+  envs:
+    - base.env

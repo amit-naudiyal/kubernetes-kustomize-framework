@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service1
+  labels:
+    application: application1
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    application: application1
+    name: deployment1

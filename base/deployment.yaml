@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-1
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  template:
+    metadata:
+      labels:
+        application: application-1
+        name: deployment-1
+    spec:
+      containers:
+        - name: app
+          imagePullPolicy: Always
+          image: nginx:latest
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "100Mi"
+          ports:
+            - containerPort: 80
+
+          envFrom:
+            - configMapRef:
+                name: config-map-1
+            - secretRef:
+                name: secrets-1

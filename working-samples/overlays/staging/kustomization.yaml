@@ -1,0 +1,25 @@
+namespace: working-sample-staging
+commonLabels:
+  env: staging
+resources:
+  - namespace.yaml
+  - ../../base
+  - configMap.yaml
+configMapGenerator:
+  - name: sample-config-map
+    behavior: merge
+    envs:
+      - working-sample-staging.env
+patchesStrategicMerge:
+  - patch-deployment.yaml
+
+images:
+  - name: <myapp-ImageName>:<myapp-ImageVersion>
+    newName: nginx
+    newTag: latest
+
+#secretGenerator:
+#  - envs:
+#      - secrets/deployment1-secrets
+#    name: sample-secrets
+#    type: Opaque

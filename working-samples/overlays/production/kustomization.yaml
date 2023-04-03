@@ -1,0 +1,20 @@
+namespace: namespace2
+commonLabels:
+  env: namespace2
+resources:
+  - ../../base
+configMapGenerator:
+  - name: sample-config-map
+    behavior: merge
+    envs:
+      - namespace2.env
+images:
+  - name: gcr.io/PROJECT_ID/IMAGE:TAG
+    newName: newname
+    newTag: newtag
+
+secretGenerator:
+  - envs:
+      - secrets/deployment2-secrets
+    name: sample-secrets
+    type: Opaque

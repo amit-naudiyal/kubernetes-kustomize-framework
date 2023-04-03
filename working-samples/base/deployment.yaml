@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: working-sample-deployment
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  template:
+    metadata:
+      labels:
+        application: core-app
+        name: deployment-1
+    spec:
+      containers:
+        - name: my-app
+          imagePullPolicy: Always
+          image: <myapp-ImageName>:<myapp-ImageVersion>
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "100Mi"
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: sample-config-map
