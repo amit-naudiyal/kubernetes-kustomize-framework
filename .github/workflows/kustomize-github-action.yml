@@ -1,9 +1,6 @@
 name: 'Kustomize GitHub Actions'
 run-name: Verifying the Commit pushed by ${{ github.actor }}
-#run-name: Verifying Pull Request raised by ${{ github.actor }}
 on: [push]
-#on:
-#  - pull_request
 jobs:
   kustomize:
     name: 'Kustomize'
@@ -12,8 +9,7 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@master
       - name: 'Kustomize Build'
-        #uses: karancode/kustomize-github-action@master
-        uses: rax-ee/ee-kubernetes-kustomize-framework@updatework
+        uses: amit-naudiyal/kubernetes-kustomize-framework@main
         with:
           kustomize_version: '3.0.0'
           kustomize_build_dir: 'working-samples/overlays/staging'
